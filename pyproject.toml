@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ce-1-continuous-existence"
+version = "0.1.0"
+description = "CE-1 Continuous Existence Research Programme — investigating whether an artificial cognitive system could genuinely experience continuous existence and subjective experience."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "CC-BY-NC-4.0" }
+authors = [{ name = "CE-1 Research Programme" }]
+keywords = ["consciousness", "cognitive-architecture", "continual-learning", "artificial-mind", "research"]
+
+# Deliberately minimal. Stage 0 is documentation and provenance engineering,
+# not model training. The only runtime dependency is the Python standard
+# library; everything else is opt-in and recorded per-experiment.
+dependencies = []
+
+[project.optional-dependences]
+# Optional, only if a later stage needs numerical work.
+numeric = ["numpy>=2.0", "scipy>=1.14"]
+
+[tool.setuptools]
+packages = ["ce1"]
+
+[tool.setuptools.package-data]
+ce1 = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+# Intentionally no style rules that would encourage speculative abstraction.
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
