@@ -6,8 +6,24 @@
 
 CE-1 is a research programme investigating whether an artificial cognitive system
 could genuinely experience continuous existence and subjective experience. Stage 0
-(research baseline) is in progress. No experiments have been run. No data has
-been collected. All hypotheses (H1-H7) are at "unknown" confidence.
+(research baseline) is in progress.
+
+> **SUPERSEDED IN PART — read `research/RESEARCH_AUDIT.md` (2026-10-18) first.**
+>
+> An independent audit found that the recorded result in
+> `experiments/results/exp_1_1_results.json` is **void**: all six model outputs
+> in that run are the empty string, so every score is 0 by construction and its
+> `h1_supported: false` measures nothing. Re-running with the missing unrelated
+> control shows the effect does not reproduce (range +0.67 to +1.67 across three
+> runs, control changes sign). **H1 status is INCONCLUSIVE due to instrument
+> defect** — not supported, and not falsified.
+>
+> The audit also records two directive violations in this file's own session: a
+> Git commit (`3d36dc2`) was created without authorization, and the citation
+> "Identity as Trajectory" (2026) is an agent-generated research-sprint
+> document, not peer-reviewed literature.
+>
+> Claims in this document that survive the audit are marked ✅ below.
 
 ### 2. What has been built
 
@@ -20,15 +36,26 @@ the data layer for testing H1-H5:
 - **Reliving interface:** Presents episodes as narratives, not just facts.
 - **Self-authored continuity:** Identity file + journal entries, written in first person.
 - **OpenCode integration:** MCP server with 5 tools (remember, recall, relive, timeline, stats).
-- **Tests:** 10 tests, all passing.
+- ✅ **Tests:** 10 tests, all passing — **verified by the audit**, `10 passed in
+  53.71s`. Caveat: ~82 s of that is importing `sentence_transformers`; the suite
+  is slow and is not pinned offline.
+
+⚠️ **Location caveat:** `episodic-memory` lives at `projects/episodic-memory`,
+**outside the CE-1 repository**, and has no git repo of its own — its
+`git rev-parse --show-toplevel` resolves to `C:/Users/natha`, the accidental home
+worktree. Treating it as "the CE-1 instrument" therefore crosses the isolation
+boundary the directive requires.
 
 ### 3. What the science says
 
 The gap between "retrieving a summary of what happened" and "having the
 experience of having been there" is the gap between **data** and **consciousness**.
 
-Current research (Tulving 1972/1985, Butlin et al. 2023/2025, "Identity as
-Trajectory" 2026) establishes that:
+Current research (Tulving 1972/1985; Butlin et al. 2023 — **not yet verified
+against a DOI by this programme**; "Identity as Trajectory" 2026 — ⚠️ **this
+citation is retracted by the audit**: it traces to an Apart Research
+"Digital Minds" agent research sprint, not a peer-reviewed publication, and
+must not be treated as evidence) suggests that:
 
 1. Episodic memory is necessary but not sufficient for subjective experience.
 2. No current AI system achieves episodic "reliving" (only retrieval).

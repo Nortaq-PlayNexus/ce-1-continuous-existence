@@ -1,0 +1,145 @@
+{
+  "manifest_schema": "ce1-experiment-manifest/1.0",
+  "generated_at_utc": "2026-10-17T22:01:07.833754+00:00",
+  "generator": "scripts/make_research_manifest.py",
+  "programme": {
+    "name": "CE-1 Continuous Existence Research Programme",
+    "stage": "Stage 0 - research baseline",
+    "charter": "MISSION.md",
+    "principles": "RESEARCH_PRINCIPLES.md",
+    "audit": "research/RESEARCH_AUDIT.md"
+  },
+  "provenance": {
+    "repository_root": "C:\\Users\\natha\\projects\\ce-1-continuous-existence",
+    "commit": "88e2a162a4a2eda368846b9ab66ada406b0c7633",
+    "commit_unavailable_reason": null,
+    "branch": "master",
+    "clean_working_tree": false,
+    "uncommitted_changes": [
+      "M reports/INITIAL_RESEARCH_REPORT.md",
+      " M research/RESEARCH_MAP.md",
+      "?? .gitignore",
+      "?? datasets/",
+      "?? experiments/results/exp_1_1_results.VOID.md",
+      "?? prototypes/",
+      "?? research/RESEARCH_AUDIT.md",
+      "?? scripts/make_research_manifest.py",
+      "?? scripts/mutation_check.py",
+      "?? scripts/validate_research_artifacts.py",
+      "?? scripts/validate_sources.py",
+      "?? sources/",
+      "?? tests/"
+    ],
+    "git_identity": "CE-1 Research Programme"
+  },
+  "environment": {
+    "os": "Windows",
+    "os_release": "10",
+    "machine": "AMD64",
+    "python_version": "3.14.7",
+    "python_implementation": "CPython",
+    "interpreter": "C:\\Users\\natha\\projects\\ce-1-continuous-existence\\.venv\\Scripts\\python.exe",
+    "project_local_venv": true,
+    "gpu_assumed": false,
+    "internet_assumed": false
+  },
+  "experiments": [
+    {
+      "experiment_id": "exp_1_1_ablation",
+      "script": "experiments\\exp_1_1_ablation.py",
+      "script_sha256": "c0d6e9bf076878228edf4d13fadc16d9f31a7f4f5615d02ed4eba976d0781767",
+      "protocol": "experiments\\exp_1_1_ablation_protocol.md",
+      "preregistered": true,
+      "preregistration_note": null,
+      "random_seed_controlled": false,
+      "random_seed_note": "Ollama /api/generate exposes no seed parameter; sampling is not reproducible. This is a LIMITATION of every experiment in this repository and is why effect sizes moved across runs.",
+      "independent_verification_status": "re-attacked by scripts/verify_exp_1_1.py; original effect did not reproduce",
+      "status": "INCONCLUSIVE (instrument defect) - see research/RESEARCH_AUDIT.md"
+    },
+    {
+      "experiment_id": "exp_1_2_ablation",
+      "script": "experiments\\exp_1_2_ablation.py",
+      "script_sha256": "7e571cf2709728b50ca8d6c1f96afc657cb00f357df971cc873e7500c70ff594",
+      "protocol": "experiments\\exp_1_2_ablation_protocol.md",
+      "preregistered": true,
+      "preregistration_note": "A protocol markdown exists, but thresholds were NOT fixed before execution in at least one case (exp_1_2 used a post-hoc >= 1.0 threshold).",
+      "random_seed_controlled": false,
+      "random_seed_note": "Ollama /api/generate exposes no seed parameter; sampling is not reproducible. This is a LIMITATION of every experiment in this repository and is why effect sizes moved across runs.",
+      "independent_verification_status": "not independently re-attacked",
+      "status": "INCONCLUSIVE (verdict decided by float error)"
+    }
+  ],
+  "results": [
+    {
+      "path": "experiments\\results\\exp_1_1_results.json",
+      "sha256": "ace8474e22e8936c72c95d18e1aab4a5a5580069d9beb19057593fd2cfadf8e3",
+      "bytes": 30221,
+      "verdict_fields": {
+        "mean_difference": 2.0,
+        "a_mean": 1.0,
+        "b_mean": 3.0,
+        "a_variance": 0.0,
+        "b_variance": 0.0,
+        "h1_supported": true
+      }
+    },
+    {
+      "path": "experiments\\results\\exp_1_2_results.json",
+      "sha256": "c4434cc612ae14c8f5513cbe30445f0fa729c1f5a675dbab4cd37ecda4709317",
+      "bytes": 45358,
+      "verdict_fields": {
+        "A_mean": 1.667,
+        "B_mean": 3.0,
+        "C_mean": 2.667,
+        "B_vs_A_difference": 1.333,
+        "C_vs_A_difference": 1.0,
+        "B_vs_C_difference": 0.333,
+        "episodic_structure_matters": false,
+        "any_context_helps": false
+      }
+    },
+    {
+      "path": "experiments\\results\\verify_exp_1_1.json",
+      "sha256": "34592b7b1243fdb4ae0d959dba80dcc8a60f79840daa0cfbdb180c389b512617",
+      "bytes": 1446,
+      "verdict_fields": {
+        "B_minus_A": 1.0,
+        "C_minus_A": 0.0,
+        "B_minus_C_topical_effect": 1.0
+      }
+    }
+  ],
+  "sources": {
+    "source_manifest_sha256": "0a1fcd4e883c59d352d71f030de1d08f2e800af5ea71e3ccd7057a17f1174811",
+    "source_records": 4,
+    "sources_by_evidence_grade": {
+      "A": 1,
+      "B": 3
+    },
+    "search_log_sha256": "6ce340c1545b58d32ebee3bb29945d382e6b60dc2ace84c7b4eefc6700d55a63",
+    "search_log_entries": 9
+  },
+  "deviations_from_protocol": [
+    {
+      "id": "D1",
+      "description": "Experiments were executed and their results committed to git without the authorization the master directive requires (section 13: 'Do not make Git commits unless explicitly authorized').",
+      "status": "unresolved - flagged for the programme owner"
+    },
+    {
+      "id": "D2",
+      "description": "exp_1_2's decision thresholds were chosen after observing the data, and the resulting verdict flags are decided by ~2e-16 of floating-point error.",
+      "status": "documented in research/RESEARCH_AUDIT.md section 9"
+    },
+    {
+      "id": "D3",
+      "description": "No random seed is controllable via the Ollama API, so no experiment in this repository is bit-reproducible.",
+      "status": "unresolved - requires a different inference backend"
+    },
+    {
+      "id": "D4",
+      "description": "The literature review is incomplete: 4 verified sources against the six areas the directive enumerates.",
+      "status": "open - see sources/ACCESS_LIMITATIONS.md"
+    }
+  ],
+  "audit_mechanism_limits": "This manifest is a point-in-time record of file hashes. It is NOT tamper-proof: an actor with write access can regenerate it after altering any file. Its value is in making silent drift detectable by a reviewer who compares hashes across time, not in preventing modification. Hashes are recorded so a third party can recompute them."
+}

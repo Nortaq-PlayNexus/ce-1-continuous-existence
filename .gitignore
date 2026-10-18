@@ -1,0 +1,34 @@
+# CE-1 — Continuous Existence Research Programme
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Test / tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Experiment raw artifacts.
+# These are DATA and are tracked by design (the directive requires result
+# provenance). Large or regenerable blobs do not belong here -- commit the
+# manifest/hashes instead of multi-megabyte outputs.
+# experiments/results/*.json
+
+# Never commit credentials. The directive (sec. 10) requires secure handling.
+.env
+.env.*
+*.key
+*.pem
+*.p12
+credentials.json
+secrets.json
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
