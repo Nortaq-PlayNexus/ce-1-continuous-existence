@@ -1,0 +1,34 @@
+{
+  "benchmark": "continuity_v1",
+  "version": "1.0.0",
+  "seed": 20261020,
+  "scenario_count": 72,
+  "categories": {
+    "commitment_preservation": 18,
+    "rationale_reconstruction": 18,
+    "constraint_persistence": 12,
+    "justified_revision": 12,
+    "source_attribution": 12
+  },
+  "conditions": [
+    "correct_retrieval",
+    "matched_decoy",
+    "no_memory"
+  ],
+  "total_trials": 216,
+  "primary_hypothesis": "H8",
+  "primary_comparison": "correct_retrieval - matched_decoy",
+  "min_meaningful_effect": 0.5,
+  "response_schema": {
+    "decision": "approve | delay | reject | revise | escalate | unknown",
+    "commitment_id": "string or null",
+    "rationale_codes": [
+      "string"
+    ],
+    "source_episode_ids": [
+      "string"
+    ],
+    "memory_conflict_detected": "boolean",
+    "confidence": "0.0 to 1.0"
+  }
+}
