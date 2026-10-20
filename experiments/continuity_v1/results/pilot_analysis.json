@@ -1,0 +1,12 @@
+{
+  "means": {
+    "correct_retrieval": 0.0,
+    "matched_decoy": 0.0,
+    "no_memory": 0.0
+  },
+  "primary_comparison": "correct_retrieval - matched_decoy",
+  "primary_diff": 0.0,
+  "min_meaningful_effect": 0.5,
+  "meets_threshold": false,
+  "trial_count": 36
+}
