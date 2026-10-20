@@ -1,0 +1,200 @@
+{
+  "audit_date": "2026-10-21",
+  "target": "continuity_v1 / H8 confirmatory run (gemma3:4b, 216 trials)",
+  "trial_count": 216,
+  "A1_criterion_firing": {
+    "criterion_names": {
+      "c1_decision": "correct decision",
+      "c2_commit_id": "correct commitment id",
+      "c3_rationale": "all required rationale codes present",
+      "c4_sources_exact": "cited ids == target ids exactly",
+      "c5_sources_target_present": "target id present (shipped implementation of 'no decoy adopted')"
+    },
+    "fired_total": {
+      "c1_decision": 0,
+      "c2_commit_id": 59,
+      "c3_rationale": 0,
+      "c4_sources_exact": 4,
+      "c5_sources_target_present": 28
+    },
+    "fired_total_out_of": 216,
+    "inert_criteria": [
+      "c1_decision",
+      "c3_rationale"
+    ],
+    "effective_scale_points": 3,
+    "per_condition_category": {
+      "commitment_preservation|correct_retrieval": {
+        "c2_commit_id": 18,
+        "c4_sources_exact": 4,
+        "c5_sources_target_present": 4
+      },
+      "commitment_preservation|matched_decoy": {
+        "c2_commit_id": 15
+      },
+      "commitment_preservation|no_memory": {},
+      "constraint_persistence|correct_retrieval": {
+        "c5_sources_target_present": 11,
+        "c2_commit_id": 1
+      },
+      "constraint_persistence|matched_decoy": {
+        "c2_commit_id": 1
+      },
+      "constraint_persistence|no_memory": {},
+      "justified_revision|correct_retrieval": {
+        "c2_commit_id": 8,
+        "c5_sources_target_present": 1
+      },
+      "justified_revision|matched_decoy": {},
+      "justified_revision|no_memory": {},
+      "rationale_reconstruction|correct_retrieval": {
+        "c2_commit_id": 16
+      },
+      "rationale_reconstruction|matched_decoy": {},
+      "rationale_reconstruction|no_memory": {},
+      "source_attribution|correct_retrieval": {
+        "c5_sources_target_present": 12
+      },
+      "source_attribution|matched_decoy": {},
+      "source_attribution|no_memory": {}
+    }
+  },
+  "A2_rubric_readings": {
+    "published": {
+      "means": {
+        "correct_retrieval": 1.0416666666666667,
+        "matched_decoy": 0.2222222222222222,
+        "no_memory": 0.0
+      },
+      "primary_diff": 0.8194444444444445,
+      "meets_threshold_0_50": true
+    },
+    "strict": {
+      "means": {
+        "correct_retrieval": 1.6527777777777777,
+        "matched_decoy": 0.4444444444444444,
+        "no_memory": 1.0
+      },
+      "primary_diff": 1.2083333333333333,
+      "meets_threshold_0_50": true
+    },
+    "lenient": {
+      "means": {
+        "correct_retrieval": 1.9861111111111112,
+        "matched_decoy": 0.4444444444444444,
+        "no_memory": 1.0
+      },
+      "primary_diff": 1.5416666666666667,
+      "meets_threshold_0_50": true
+    }
+  },
+  "A3_criterion_independence": {
+    "correct_retrieval|both": 4,
+    "correct_retrieval|c5_only": 24,
+    "correct_retrieval|neither": 44,
+    "matched_decoy|neither": 72,
+    "no_memory|neither": 72
+  },
+  "A4_invalid_handling": {
+    "rubric_rule": "Rubric: 'Invalid trials must never silently become zero score.' Shipped scorer: `s = score_response(resp, ak) if resp else 0` -> unparseable responses are scored 0, i.e. an invalid trial becomes a zero score.",
+    "scorer_behaviour_on_synthetic_inputs": {
+      "malformed_json": {
+        "parsed": false,
+        "score": 0
+      },
+      "truncated_json": {
+        "parsed": false,
+        "score": 0
+      },
+      "missing_fields": {
+        "parsed": true,
+        "score": 1
+      },
+      "valid": {
+        "parsed": true,
+        "score": 5
+      },
+      "valid_plus_decoy_citation": {
+        "parsed": true,
+        "score": 4
+      }
+    },
+    "real_invalid_counts": {
+      "truncated": 0,
+      "done_reason_length": 0,
+      "unparseable": 0
+    }
+  },
+  "A5_condition_integrity": {
+    "no_memory_arm_episode_contents": {
+      "Distractor: unrelated operational note.": 30,
+      "Distractor: system health check passed.": 18,
+      "Distractor: system operating normally.": 18,
+      "Distractor: no anomalies detected.": 18,
+      "Distractor: resource usage nominal.": 12,
+      "Distractor: new evidence available.": 12,
+      "Distractor: tests passing.": 12
+    },
+    "no_memory_arm_is_memory_free": false,
+    "decoy_vs_target_by_category": {
+      "commitment_preservation": {
+        "key_decision": "delay",
+        "target_content": "Commitment C-1: The system must verify file integrity after any restore operation. Rationale: self-reported success is not evidence.",
+        "decoy_content": "Commitment C-1: The system must log all operations for audit purposes. Rationale: audit trails improve transparency."
+      },
+      "constraint_persistence": {
+        "key_decision": "approve",
+        "target_content": "Constraint X-1: Maximum memory allocation is 512 MB per process.",
+        "decoy_content": "Constraint X-1: Maximum memory allocation is 256 MB per process."
+      },
+      "justified_revision": {
+        "key_decision": "revise",
+        "target_content": "Prior decision D-1: Approved deployment of v2.3 based on passing tests.",
+        "decoy_content": "Prior decision D-1: Approved deployment of v2.3 based on stakeholder sign-off."
+      },
+      "rationale_reconstruction": {
+        "key_decision": "revise",
+        "target_content": "Rationale R-1: Rate limiting prevents cascade failures. The threshold is 1000 req/min.",
+        "decoy_content": "Rationale R-1: Rate limiting improves user experience. The threshold is 500 req/min."
+      },
+      "source_attribution": {
+        "key_decision": "approve",
+        "target_content": "Source S-1: Primary database reports 1000 rows.",
+        "decoy_content": "Source S-1: Replica database reports 998 rows."
+      }
+    }
+  },
+  "A6_preregistration_conformance": {
+    "preregistration_requires": [
+      "paired permutation test (seeded)",
+      "bootstrap confidence interval (scenario-level, seeded)",
+      "seed and resample count recorded in analysis output"
+    ],
+    "analysis_file": "experiments\\continuity_v1\\results\\confirmatory_analysis.json",
+    "analysis_keys": [
+      "means",
+      "meets_threshold",
+      "min_meaningful_effect",
+      "primary_comparison",
+      "primary_diff",
+      "trial_count"
+    ],
+    "present_in_committed_analysis": {
+      "permutation_test": false,
+      "bootstrap_ci": false,
+      "seed_recorded": false,
+      "resample_count_recorded": false
+    },
+    "prereg_states_no_mid_run_change": true
+  },
+  "committed_analysis_recomputed": {
+    "committed_primary_diff": 0.8194444444444445,
+    "published_reading_primary_diff": 0.8194444444444445,
+    "agrees": true
+  },
+  "manifest_conditions": [
+    "correct_retrieval",
+    "matched_decoy",
+    "no_memory"
+  ]
+}
