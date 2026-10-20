@@ -141,6 +141,45 @@ This is a property of the host (llama.cpp CPU inference is not bit-exact
 across differing batch/thread schedules), not of the instrument, and it is
 reported rather than hidden.
 
+### F7 — The effect replicates on a second model (dolphin-llama3:latest)
+
+A preregistered second-model replication
+(`experiments/continuity_v1/preregistration_h8_replication.md`, written before
+the run) was executed with a model from a different family: dolphin-llama3
+8B, qualified 21/24 with 0 truncations.
+
+| Model | Correct | Decoy | No memory | primary diff | p | 95% CI |
+|---|---:|---:|---:|---:|---:|---|
+| gemma3:4b (confirmatory) | 1.042 | 0.222 | 0.000 | 0.819 | <1.0e-4 | [0.667, 0.972] |
+| gemma3:4b (reproduction) | — | — | — | 0.875 | <1.0e-4 | [0.722, 1.028] |
+| dolphin-llama3:latest | 2.028 | 0.153 | 0.000 | **1.875** | <1.0e-4 | [1.722, 2.028] |
+
+216/216 valid, 0 truncations, prompt hashes 216/216 verified, all five
+categories positive, rubric-independent content fidelity +0.285 (correct) vs
+−0.176 (decoy). **H8-R REPLICATED.** Full detail:
+`reports/h8_replication_dolphin_llama3.md`.
+
+Two findings from the replication sharpen this report's findings:
+
+1. **The dead rubric criteria are a property of the benchmark, not of
+   gemma3:4b.** dolphin-llama3 also scores 0 on `decision` and 0 on
+   `rationale_codes` in all 216 of its trials, for a different reason. The
+   prompt never states the controlled vocabulary, so both criteria are
+   unreachable by construction (D3). The fix belongs in the benchmark, not
+   the scorer.
+2. **The scoring defect was an output-format artifact, not a rubric
+   judgement.** dolphin quotes episode ids unbracketed, so its as-run and
+   corrected scores are identical (1.875 either way), where gemma3:4b's
+   differ (0.819 vs 1.833). The defect was in the interaction between one
+   model and the prompt, not in the rubric — which is why the corrected
+   instrument is reported alongside the as-run one rather than replacing it.
+3. **The 0.000 no-memory floor is a property of the rubric, not of the
+   model.** dolphin's no-memory answers favour the target's vocabulary over
+   the decoy's in 30 of 72 scenarios (discrimination +0.127, where
+   gemma3:4b showed none), yet its rubric score is still 0.000 because the
+   controlled vocabulary and the episode ids are unreachable. A content-level
+   metric sees what the rubric cannot.
+
 ---
 
 ## 2. Findings that require the record to be corrected

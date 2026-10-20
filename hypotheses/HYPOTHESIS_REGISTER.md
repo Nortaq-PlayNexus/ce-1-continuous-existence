@@ -247,29 +247,43 @@ analysis that the original run never performed: paired permutation
 p < 1.0e-4, bootstrap 95% CI [0.667, 0.972], verdict SUPPORTED under both the
 as-run and the corrected instrument.
 
+**Replication (2026-10-21):** REPLICATED on a second model under a
+preregistration written before the run. dolphin-llama3:latest (8B, QUALIFIED
+21/24), same frozen benchmark, same analysis: primary difference **1.875**,
+permutation p < 1.0e-4, bootstrap 95% CI [1.722, 2.028], 216/216 valid, all 5
+categories positive. The effect is present in both model families and is
+larger in the second.
+
 **What this does NOT establish:**
 - Consciousness or subjective experience
 - Genuine reliving or autonoetic awareness
 - Metaphysical continuous existence
 - Moral patienthood
-- Generalization to other models or tasks
+- Generalization to other models, tasks, or to interruption and resumption
+- That decision quality improves: the rubric's `decision` component was
+  never awarded in any trial, in either model
 
 **Scope correction (2026-10-21):** for gemma3:4b the 0-5 rubric is in practice
 a 0-3 instrument — the `decision` and `rationale_codes` components were never
 awarded in any of the 216 trials, because the model never emits the
-benchmark's controlled vocabulary. The result is therefore a *source-attribution
-and commitment-identification* effect. A rubric-independent content-fidelity
-measure confirms the same direction (+0.152 discrimination in the correct
-condition, −0.215 in the decoy condition), so the finding does not depend on
-the rubric.
+benchmark's controlled vocabulary. dolphin-llama3 fails both criteria in all
+216 of its trials as well, so the defect is in the prompt design, not in one
+model. The result is therefore a *source-attribution and commitment-
+identification* effect. A rubric-independent content-fidelity measure
+confirms the same direction in both models (+0.152 and +0.285 discrimination
+in the correct condition, −0.215 and −0.176 in the decoy condition), so the
+finding does not depend on the rubric.
 
 **Evidence:** Zenodo DOI 10.5281/zenodo.23489491, confirmatory_results.jsonl,
 confirmatory_scores.jsonl, confirmatory_analysis.json,
-adversarial_verification_h8.json
+adversarial_verification_h8.json, reports/adversarial_verification_h8.md,
+reports/h8_replication_dolphin_llama3.md
 
-**Model:** gemma3:4b (qualified 23/24, 95.8%)
+**Models:** gemma3:4b (qualified 23/24, 95.8%); dolphin-llama3:latest
+(qualified 21/24)
 
-**Preregistration:** experiments/continuity_v1/preregistration_h8.md
+**Preregistration:** experiments/continuity_v1/preregistration_h8.md,
+experiments/continuity_v1/preregistration_h8_replication.md
 
 ---
 

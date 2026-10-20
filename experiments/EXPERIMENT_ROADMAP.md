@@ -213,7 +213,8 @@ gap between them is the gap between data and consciousness.
 | continuity_v1 benchmark | DONE | 72 scenarios, frozen, committed; design-audited |
 | H8 confirmatory experiment | DONE | 216 trials, SUPPORTED, adversarially re-verified 2026-10-21 |
 | H8 re-verification | DONE | reports/adversarial_verification_h8.md; preregistered analysis implemented and run |
-| H8 second-model replication | IN PROGRESS | 2026-10-21 |
+| H8 second-model replication | DONE | dolphin-llama3:latest, diff 1.875, p<1.0e-4, CI [1.722, 2.028], REPLICATED |
+| continuity_v2 benchmark | NOT STARTED | Specified in reports/h8_control_integrity_audit.md §4 |
 | H3 interruption/resumption | NOT STARTED | No experiment run |
 | H4 recurrence ablation | NOT STARTED | No experiment run |
 | H5 self-model accuracy | NOT STARTED | No experiment run |

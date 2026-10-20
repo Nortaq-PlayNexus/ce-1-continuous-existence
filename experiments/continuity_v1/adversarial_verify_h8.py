@@ -94,7 +94,7 @@ def main():
     retrieval = {r["scenario_id"]: r for r in load_jsonl(BENCH / "retrieval_sets.jsonl")}
     answer_keys = {a["scenario_id"]: a for a in load_jsonl(BENCH / "answer_keys.jsonl")}
 
-    report: dict = {"results_file": str(Path(args.results).relative_to(ROOT))}
+    report: dict = {"results_file": str(Path(args.results).resolve().relative_to(ROOT))}
 
     # --- P1 data integrity -------------------------------------------------
     integrity = {
