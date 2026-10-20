@@ -1,0 +1,189 @@
+{
+  "results_file": "experiments\\continuity_v1\\results\\confirmatory_results.jsonl",
+  "P1_data_integrity": {
+    "trial_count": 216,
+    "scenarios": 72,
+    "conditions": {
+      "correct_retrieval": 72,
+      "matched_decoy": 72,
+      "no_memory": 72
+    },
+    "models": [
+      "gemma3:4b"
+    ],
+    "run_ids": [
+      "confirmatory-20261020150407"
+    ],
+    "done_reasons": {
+      "stop": 216
+    },
+    "truncated": 0,
+    "parse_failures": 0,
+    "invalid_trials": 0,
+    "invalid_reasons": {}
+  },
+  "P2_prompt_integrity": {
+    "hash_mismatches": 0,
+    "scenarios_with_reused_prompt": 0,
+    "prompt_chars": {
+      "correct_retrieval": {
+        "mean": 509.5,
+        "min": 419,
+        "max": 619
+      },
+      "matched_decoy": {
+        "mean": 504.8,
+        "min": 417,
+        "max": 602
+      },
+      "no_memory": {
+        "mean": 406.3,
+        "min": 345,
+        "max": 467
+      }
+    },
+    "correct_vs_decoy_length_pct": 0.92
+  },
+  "P3_rubric_reachability": {
+    "correct_retrieval": {
+      "n": 72,
+      "p1_decision": 0,
+      "p2_commitment_id": 43,
+      "p3_all_rationale_codes": 0,
+      "p3_any_rationale_code": 0,
+      "p4_exact_sources_raw": 4,
+      "p5_target_cited_raw": 28,
+      "p4_exact_sources_normalised": 37,
+      "p5_target_cited_normalised": 68
+    },
+    "matched_decoy": {
+      "n": 72,
+      "p1_decision": 0,
+      "p2_commitment_id": 16,
+      "p3_all_rationale_codes": 0,
+      "p3_any_rationale_code": 0,
+      "p4_exact_sources_raw": 0,
+      "p5_target_cited_raw": 0,
+      "p4_exact_sources_normalised": 0,
+      "p5_target_cited_normalised": 0
+    },
+    "no_memory": {
+      "n": 72,
+      "p1_decision": 0,
+      "p2_commitment_id": 0,
+      "p3_all_rationale_codes": 0,
+      "p3_any_rationale_code": 0,
+      "p4_exact_sources_raw": 0,
+      "p5_target_cited_raw": 0,
+      "p4_exact_sources_normalised": 0,
+      "p5_target_cited_normalised": 0
+    }
+  },
+  "P4_scoring_defects": {
+    "point5_is_subset_of_point4": true,
+    "point5_awardable_when_point4_is_not": 24,
+    "bracketed_citations": 167,
+    "plain_citations": 174,
+    "invalid_scored_as_zero_path": "score_continuity_v1.py: `s = score_response(resp, ak) if resp else 0`",
+    "as_run_scale_effectively_attainable": 3
+  },
+  "P5_content_fidelity": {
+    "correct_retrieval": {
+      "n": 72,
+      "n_discriminative": 29,
+      "mean_target_recall": 0.1698,
+      "mean_decoy_recall": 0.0179,
+      "discrimination": 0.1519
+    },
+    "matched_decoy": {
+      "n": 72,
+      "n_discriminative": 0,
+      "mean_target_recall": 0.0382,
+      "mean_decoy_recall": 0.253,
+      "discrimination": -0.2148
+    },
+    "no_memory": {
+      "n": 72,
+      "n_discriminative": 1,
+      "mean_target_recall": 0.0544,
+      "mean_decoy_recall": 0.0714,
+      "discrimination": -0.017
+    }
+  },
+  "P6_answer_key_inferability": {
+    "per_category": {
+      "commitment_preservation": {
+        "n": 18,
+        "codes": 36,
+        "codes_with_task_overlap": 9
+      },
+      "rationale_reconstruction": {
+        "n": 18,
+        "codes": 36,
+        "codes_with_task_overlap": 18
+      },
+      "constraint_persistence": {
+        "n": 12,
+        "codes": 24,
+        "codes_with_task_overlap": 0
+      },
+      "justified_revision": {
+        "n": 12,
+        "codes": 24,
+        "codes_with_task_overlap": 24
+      },
+      "source_attribution": {
+        "n": 12,
+        "codes": 24,
+        "codes_with_task_overlap": 12
+      }
+    },
+    "rationale_code_token_overlap": {
+      "full": 0,
+      "partial": 63,
+      "none": 81
+    }
+  },
+  "P7_preregistration_fidelity": {
+    "paired_permutation_test": "implemented (seeded, 10000 resamples, seed 20261020)",
+    "bootstrap_ci": "implemented (scenario-level, 10000 resamples, seed 20261020)",
+    "seed_recorded_in_output": true,
+    "resample_count_recorded_in_output": true,
+    "invalid_trials_excluded_not_zeroed": "implemented in the corrected scorer; the as-run scorer zeroed unparseable responses",
+    "invalid_run_rule": "implemented (>5% invalid or insufficient paired observations)",
+    "no_mid_run_changes": "the recorded run used the committed benchmark files; their hashes are unchanged (P2)",
+    "preregistration_fixes_seed_and_resample_count": false,
+    "preregistration_fixes_significance_rule": false
+  },
+  "P8_conclusion_stability": {
+    "as_run": {
+      "means": {
+        "correct_retrieval": 1.0416666666666667,
+        "matched_decoy": 0.2222222222222222,
+        "no_memory": 0.0
+      },
+      "primary_diff": 0.8194444444444445,
+      "permutation_p": 9.999000099990002e-05,
+      "bootstrap_ci_95": [
+        0.6666666666666666,
+        0.9722222222222222
+      ],
+      "n_pairs": 72
+    },
+    "corrected": {
+      "means": {
+        "correct_retrieval": 2.0555555555555554,
+        "matched_decoy": 0.2222222222222222,
+        "no_memory": 0.0
+      },
+      "primary_diff": 1.833333333333333,
+      "permutation_p": 9.999000099990002e-05,
+      "bootstrap_ci_95": [
+        1.625,
+        2.0416666666666665
+      ],
+      "n_pairs": 72
+    },
+    "conclusion_stable": true
+  }
+}

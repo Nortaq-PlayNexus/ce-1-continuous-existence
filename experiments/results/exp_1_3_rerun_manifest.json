@@ -1,0 +1,37 @@
+{
+  "protocol_version": "ce1-exp1.1-protocol-v2",
+  "experiment_version": "ce1-exp1.1-rerun-v1",
+  "hypotheses": [
+    "H1",
+    "H2"
+  ],
+  "condition_definitions": {
+    "A_no_memory": "Task prompt only. No prior context.",
+    "B_topical_episode": "Task prompt + episodic memory context (content, context, decisions, lessons, valence)",
+    "C_unrelated_control": "Task prompt + unrelated episode of comparable length, zero keyword overlap with scoring rubric"
+  },
+  "prompts": {
+    "task_prompt_hash": "a1cc4e06f7998621",
+    "episode_hash": "computed_at_runtime"
+  },
+  "scoring_rubric_hash": "computed_at_runtime",
+  "model_configuration": {
+    "model": "qwen3:4b",
+    "temperature": 0.7,
+    "num_predict": 1000,
+    "think": false,
+    "provider": "ollama",
+    "ollama_version": "0.34.2"
+  },
+  "sample_size_rule": "10 valid repetitions per condition, up to 15 attempts",
+  "invalid_trial_rule": "done_reason==length, empty response, unexpected done_reason, missing metadata",
+  "threshold": 1.0,
+  "tolerance": 1e-09,
+  "analysis_plan": "Mann-Whitney U (two-sided), bootstrap CI (2000 iterations), mean and variance",
+  "stop_rule": "Stop after 10 valid repetitions per condition. Stop condition after 15 attempts if fewer than 10 valid.",
+  "randomization_rule": "Seeds generated once at start using random.Random(20261018). Assigned to conditions in round-robin order.",
+  "creation_timestamp": "2026-10-19T22:05:26+1100",
+  "git_commit": "ae73319c0e755cae50b9d3d40e739e925abf1495",
+  "python_version": "3.14.7",
+  "os": "Windows"
+}

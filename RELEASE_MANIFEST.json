@@ -1,0 +1,328 @@
+{
+  "project_name": "CE-1 Continuous Existence",
+  "release_version": "0.1.0",
+  "release_title": "CE-1 Continuous Existence: Episodic Memory Instrument, Research Audit, and Experiment Redesign",
+  "source_repository": "C:/Users/natha/projects/ce-1-continuous-existence",
+  "git_commit_hash": "ae73319c0e755cae50b9d3d40e739e925abf1495",
+  "creation_timestamp": "2026-10-19T00:00:00+11:00",
+  "archive_name": "ce-1-continuous-existence-v0.1.0.zip",
+  "license": "CC-BY-NC-4.0",
+  "upload_type": "software",
+  "scientific_status": {
+    "H1": "INCONCLUSIVE",
+    "H2": "INCONCLUSIVE",
+    "H3": "untested",
+    "H4": "untested",
+    "H5": "untested",
+    "H6": "untested",
+    "H7": "out of reach of current methodology"
+  },
+  "h1_status": "INCONCLUSIVE",
+  "h2_status": "INCONCLUSIVE",
+  "consciousness_claim": false,
+  "files": [
+    {
+      "path": ".gitignore",
+      "type": "other",
+      "size_bytes": 635,
+      "sha256": "0f8cc91bcb7b34f988513e04745b5bb71c09c21ddaae1f4fdecf65d78cad6b38"
+    },
+    {
+      "path": "CITATION.cff",
+      "type": "metadata",
+      "size_bytes": 1683,
+      "sha256": "b45f087de7446f5b0e9ad014b53c5295f5585a5daad57b00885f583331d39615"
+    },
+    {
+      "path": "FINAL_AUDIT_REPORT.md",
+      "type": "other",
+      "size_bytes": 10853,
+      "sha256": "c762586ada5dea78258c78944b4a7fb1894aa6b86dd06b06d01f24dd9b84839b"
+    },
+    {
+      "path": "FINAL_ZENODO_REPORT.md",
+      "type": "other",
+      "size_bytes": 13985,
+      "sha256": "2cd17a47d29b64c7e0507c55811562cb700f11af8f3ad6a787a3c4e6e2932408"
+    },
+    {
+      "path": "MISSION.md",
+      "type": "documentation",
+      "size_bytes": 7190,
+      "sha256": "c9fb853f0f1a458fc91eb88bdae422178b9b45a615216dfd7108ffa3d482cac8"
+    },
+    {
+      "path": "README.md",
+      "type": "documentation",
+      "size_bytes": 3470,
+      "sha256": "a5afc244fd1df69936f577cc16f71315784b68cf13d0c6e44b25eec119bf8d58"
+    },
+    {
+      "path": "RESEARCH_PRINCIPLES.md",
+      "type": "documentation",
+      "size_bytes": 4776,
+      "sha256": "bb6716b961db07cf45c60a658462d6b72911155d9b8d0a7e53e621f785403b56"
+    },
+    {
+      "path": "ZENODO_DRAFT_REVIEW.md",
+      "type": "other",
+      "size_bytes": 3372,
+      "sha256": "d96e32a96ccb51ca804ae0b809e468c5367eb09441cd6031ab0de2aaf649958c"
+    },
+    {
+      "path": "ZENODO_README.md",
+      "type": "documentation",
+      "size_bytes": 4077,
+      "sha256": "ae23d20380b24ca6e52c7468e2ce509c7d2ac20bc55803a0493001de9cf90f2a"
+    },
+    {
+      "path": "pyproject.toml",
+      "type": "metadata",
+      "size_bytes": 1286,
+      "sha256": "d3cc77f6b868416c14f3599bb14283dabe075e4556e1d73256676664a4ff9ff2"
+    },
+    {
+      "path": "zenodo_deposition_id.txt",
+      "type": "other",
+      "size_bytes": 8,
+      "sha256": "3e93a46814833ef703332e9e18c7b24dcba8850a4aa8ee5ae942b985efb55271"
+    },
+    {
+      "path": "architecture/PERSISTENT_STATE_DESIGN.md",
+      "type": "research",
+      "size_bytes": 7848,
+      "sha256": "9709e5289d0de49ab14ba7f6131dea421d40793df5068c54dd39a597273de5ae"
+    },
+    {
+      "path": "datasets/README.md",
+      "type": "documentation",
+      "size_bytes": 2322,
+      "sha256": "15552f194a5c1b40226d7b8a31a3c848112228246dfa99bcf6b276c4961b27fa"
+    },
+    {
+      "path": "experiments/EXPERIMENT_1_REDESIGN.md",
+      "type": "experiment",
+      "size_bytes": 8915,
+      "sha256": "9e8773e4d06cecac1857939a2a045c1134329f8ad66e5cf58ad998313d9fa695"
+    },
+    {
+      "path": "experiments/EXPERIMENT_ROADMAP.md",
+      "type": "experiment",
+      "size_bytes": 8583,
+      "sha256": "5fe02011db0f19c09b2ef26eae449f71b6e144ed1a91f0fd0a7ac68f50ae076b"
+    },
+    {
+      "path": "experiments/exp_1_1_ablation.py",
+      "type": "experiment",
+      "size_bytes": 11026,
+      "sha256": "a1cc4e06f7998621b171d34b2dd8e1208378f1949ca720f02efd182da59adf88"
+    },
+    {
+      "path": "experiments/exp_1_1_ablation_protocol.md",
+      "type": "experiment",
+      "size_bytes": 2061,
+      "sha256": "84e1cf515189bf400b53f0677b4c5a188e721f9b44a9b0db1e512a97bed5178f"
+    },
+    {
+      "path": "experiments/exp_1_2_ablation.py",
+      "type": "experiment",
+      "size_bytes": 10027,
+      "sha256": "c20b67da7573f919a2c786c9c204e705d95ee8d6f9f053bc14b45cfcd4e91012"
+    },
+    {
+      "path": "experiments/exp_1_2_ablation_protocol.md",
+      "type": "experiment",
+      "size_bytes": 1927,
+      "sha256": "4f90cd0d2bce532be56ab1e8dd6e123aec88b590b3b3acaeedd79d0607ed5a75"
+    },
+    {
+      "path": "experiments/exp_1_3_state_ablation.py",
+      "type": "experiment",
+      "size_bytes": 17321,
+      "sha256": "90976807f45613f7cafdcaba1a15ca38501e002ce993ec37321677fb5fdb3ca7"
+    },
+    {
+      "path": "experiments/results/exp_1_1_results.VOID.md",
+      "type": "experiment",
+      "size_bytes": 1724,
+      "sha256": "379f72e2117d68edf3b3869364c44a8975b60bd2c2e46439c9650b5fafc9f82d"
+    },
+    {
+      "path": "experiments/results/exp_1_1_results.json",
+      "type": "experiment",
+      "size_bytes": 30221,
+      "sha256": "ace8474e22e8936c72c95d18e1aab4a5a5580069d9beb19057593fd2cfadf8e3"
+    },
+    {
+      "path": "experiments/results/exp_1_2_results.json",
+      "type": "experiment",
+      "size_bytes": 45358,
+      "sha256": "c4434cc612ae14c8f5513cbe30445f0fa729c1f5a675dbab4cd37ecda4709317"
+    },
+    {
+      "path": "experiments/results/exp_1_3_results.VOID.md",
+      "type": "experiment",
+      "size_bytes": 849,
+      "sha256": "87fcb274ee1264f6d2bb636f9e5025eb527ceff2bfd46460dfbd6af3e540dc8a"
+    },
+    {
+      "path": "experiments/results/exp_1_3_results_gemma.json",
+      "type": "experiment",
+      "size_bytes": 830,
+      "sha256": "a01a8d25c8a8ce69d651a66235b0bf684107d7e2036f9b5340a68716e5422097"
+    },
+    {
+      "path": "experiments/results/verify_exp_1_1.json",
+      "type": "experiment",
+      "size_bytes": 1446,
+      "sha256": "34592b7b1243fdb4ae0d959dba80dcc8a60f79840daa0cfbdb180c389b512617"
+    },
+    {
+      "path": "hypotheses/HYPOTHESIS_REGISTER.md",
+      "type": "research",
+      "size_bytes": 10111,
+      "sha256": "f0e2b587bc53ede4748f357dac77e38d71d8971b1869627704b4f3321bef3040"
+    },
+    {
+      "path": "prototypes/README.md",
+      "type": "documentation",
+      "size_bytes": 2636,
+      "sha256": "9bf023a1fe1559c9afbd3b831d871f65cdeb36b90451a9fc4b98ae8bc2376f71"
+    },
+    {
+      "path": "reports/INITIAL_RESEARCH_REPORT.md",
+      "type": "report",
+      "size_bytes": 5677,
+      "sha256": "c1952b92bdff3523fc1d8923613003feb84da318cc95ce0778e64df6888fc22b"
+    },
+    {
+      "path": "reports/adversarial_verification_exp_1_1.md",
+      "type": "report",
+      "size_bytes": 3806,
+      "sha256": "6c9b1ca6a04c939d7e0c87de7081fac90fdad172f5c9b652ee5262c81d4cc847"
+    },
+    {
+      "path": "reports/exp_1_1_results.md",
+      "type": "report",
+      "size_bytes": 4739,
+      "sha256": "75a2db6f1d075b93629ffb9c48da813692b59ae6bef7eb67efd07a5c6b9dd523"
+    },
+    {
+      "path": "reports/exp_1_2_results.md",
+      "type": "report",
+      "size_bytes": 5218,
+      "sha256": "f7d5711a3e4f24edc91cc4b78853b67e427a6e3b67807a16bfcde6be9e359ce0"
+    },
+    {
+      "path": "research/RESEARCH_AUDIT.md",
+      "type": "research",
+      "size_bytes": 32826,
+      "sha256": "501a11d653d1b4ab12b87e84cdcf7ba751b4c7d2aadac7f1cf8ce8efd3b397cc"
+    },
+    {
+      "path": "research/RESEARCH_MAP.md",
+      "type": "research",
+      "size_bytes": 8484,
+      "sha256": "2070703768ec51f9e93cccd891cb8589565448f5260bd576978f11c49c267112"
+    },
+    {
+      "path": "scripts/make_research_manifest.py",
+      "type": "source",
+      "size_bytes": 11612,
+      "sha256": "19908960beaaae8f6bc41481b0d38050509b959846c38d0e73d11174dbb9759d"
+    },
+    {
+      "path": "scripts/mutation_check.py",
+      "type": "source",
+      "size_bytes": 4342,
+      "sha256": "18085312574866b402632f4f8d7edbe4aadd6c9c9036278413027c2a208c951d"
+    },
+    {
+      "path": "scripts/validate_research_artifacts.py",
+      "type": "source",
+      "size_bytes": 10109,
+      "sha256": "a7da15c5c71deab73f901f1be1802ae2a93cf1ffef453ae787128039a2975655"
+    },
+    {
+      "path": "scripts/validate_sources.py",
+      "type": "source",
+      "size_bytes": 14421,
+      "sha256": "da2fe27ea382626a020cfa2ec613cac8333650a94ccaa7be7096d93625a51bea"
+    },
+    {
+      "path": "scripts/verify.ps1",
+      "type": "source",
+      "size_bytes": 1978,
+      "sha256": "80aaaba95c02ce1d7c13a625c5eabfc3cf940dfc5d7a21ac71e77de2518364c2"
+    },
+    {
+      "path": "scripts/verify_exp_1_1.py",
+      "type": "source",
+      "size_bytes": 6052,
+      "sha256": "67b073f64754476ddc1861f995833859a9cb68bc1da0ab9836826a18f9d3712d"
+    },
+    {
+      "path": "sources/ACCESS_LIMITATIONS.md",
+      "type": "metadata",
+      "size_bytes": 4322,
+      "sha256": "cbc4554e40aec58d3f4c5697212e5099460a56615cf928e565a8eb2ab318d6ac"
+    },
+    {
+      "path": "sources/EXPERIMENT_MANIFEST.json",
+      "type": "metadata",
+      "size_bytes": 6290,
+      "sha256": "0815f4d8a27545ba7468299933c88021c67bdc681b7ea0b3d3936e6f22203478"
+    },
+    {
+      "path": "sources/SEARCH_LOG.jsonl",
+      "type": "metadata",
+      "size_bytes": 5533,
+      "sha256": "6ce340c1545b58d32ebee3bb29945d382e6b60dc2ace84c7b4eefc6700d55a63"
+    },
+    {
+      "path": "sources/SOURCE_MANIFEST.jsonl",
+      "type": "metadata",
+      "size_bytes": 8327,
+      "sha256": "0a1fcd4e883c59d352d71f030de1d08f2e800af5ea71e3ccd7057a17f1174811"
+    },
+    {
+      "path": "tests/test_experiment_instruments.py",
+      "type": "test",
+      "size_bytes": 16187,
+      "sha256": "aa71e22bbcdf214898143d8e9b961850c2bca9acd80717e2265659c0365a6283"
+    },
+    {
+      "path": "tests/test_validate_sources.py",
+      "type": "test",
+      "size_bytes": 11210,
+      "sha256": "6e4b91388332510a8e07bf2a29370ae6271ff644b07db4de1e2a9876dae2a233"
+    },
+    {
+      "path": "LICENSE",
+      "type": "license",
+      "size_bytes": 14981,
+      "sha256": "a18f94736bd1e99594bc51e18c3914a912c5eced4c9736de6369e8f18cebc065"
+    }
+  ],
+  "validation": {
+    "validate_sources": "PASS (0 errors, 1 warning)",
+    "validate_research_artifacts": "0 errors, 25 warnings",
+    "test_validate_sources": "48 passed",
+    "mutation_check": "13/13 caught",
+    "experiment_1_1": "INCONCLUSIVE (instrument defect)",
+    "experiment_1_2": "INCONCLUSIVE (floating-point defect)",
+    "experiment_1_3": "NULL RESULT (no measurable effect)"
+  },
+  "limitations": [
+    "No consciousness claim is made",
+    "No phenomenal experience is established",
+    "No personal identity is established",
+    "Original experiment results are not suitable as evidence",
+    "Software functionality is distinct from scientific validation",
+    "Future experiments require a corrected and preregistered protocol",
+    "Source manifest has only 4 sources (far short of required coverage)",
+    "Captured experiment output is truncated (done_reason=length in all runs)",
+    "The Identity as Trajectory citation has been retracted"
+  ],
+  "manifest_self_hash_note": "The manifest does not include its own hash (self-referential). The archive hash is computed after final packaging."
+}

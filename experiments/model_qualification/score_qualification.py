@@ -32,7 +32,8 @@ def load_jsonl(path: Path) -> list[dict]:
 def main():
     parser = argparse.ArgumentParser(description="Score qualification results")
     parser.add_argument("--results", required=True, help="Path to results JSONL")
-    parser.add_argument("--suite", default="qualification_suite.jsonl", help="Path to suite JSONL")
+    parser.add_argument("--suite", default=str(Path(__file__).resolve().parent / "qualification_suite.jsonl"),
+                        help="Path to suite JSONL")
     parser.add_argument("--output", default="qualification_scores.json", help="Output path")
     args = parser.parse_args()
 

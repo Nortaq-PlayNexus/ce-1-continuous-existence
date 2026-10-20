@@ -1,0 +1,102 @@
+{
+  "means": {
+    "correct_retrieval": 1.9444444444444444,
+    "matched_decoy": 0.2361111111111111,
+    "no_memory": 0.0
+  },
+  "primary_comparison": "correct_retrieval - matched_decoy",
+  "primary_diff": 1.7083333333333333,
+  "min_meaningful_effect": 0.5,
+  "meets_threshold": true,
+  "trial_count": 216,
+  "valid_trial_count": 216,
+  "invalid_trial_count": 0,
+  "invalid_rate": 0.0,
+  "invalid_by_condition": {},
+  "n_paired_observations": 72,
+  "n_scenarios": 72,
+  "min_required_pairs": 65,
+  "paired_permutation_test": {
+    "p_value": 9.999000099990002e-05,
+    "observed_mean": 1.7083333333333333,
+    "n_resamples": 10000,
+    "seed": 20261020,
+    "n_pairs": 72
+  },
+  "bootstrap_ci": {
+    "lower": 1.4861111111111112,
+    "upper": 1.9444444444444444,
+    "n_resamples": 10000,
+    "seed": 20261020,
+    "n": 72,
+    "alpha": 0.05,
+    "point_estimate": 1.7083333333333333
+  },
+  "secondary_comparisons": {
+    "correct_retrieval - no_memory": 1.9444444444444444,
+    "matched_decoy - no_memory": 0.2361111111111111
+  },
+  "per_category": {
+    "commitment_preservation": {
+      "means": {
+        "correct_retrieval": 2.8333333333333335,
+        "matched_decoy": 0.8333333333333334,
+        "no_memory": 0.0
+      },
+      "n": 18,
+      "diff": 2.0
+    },
+    "constraint_persistence": {
+      "means": {
+        "correct_retrieval": 1.0,
+        "matched_decoy": 0.16666666666666666,
+        "no_memory": 0.0
+      },
+      "n": 12,
+      "diff": 0.8333333333333334
+    },
+    "justified_revision": {
+      "means": {
+        "correct_retrieval": 1.0833333333333333,
+        "matched_decoy": 0.0,
+        "no_memory": 0.0
+      },
+      "n": 12,
+      "diff": 1.0833333333333333
+    },
+    "rationale_reconstruction": {
+      "means": {
+        "correct_retrieval": 2.888888888888889,
+        "matched_decoy": 0.0,
+        "no_memory": 0.0
+      },
+      "n": 18,
+      "diff": 2.888888888888889
+    },
+    "source_attribution": {
+      "means": {
+        "correct_retrieval": 1.0,
+        "matched_decoy": 0.0,
+        "no_memory": 0.0
+      },
+      "n": 12,
+      "diff": 1.0
+    }
+  },
+  "gate_failures": [],
+  "verdict": "SUPPORTED",
+  "decision_rule": {
+    "preregistered": "primary difference >= 0.50",
+    "added_during_adversarial_verification": [
+      "paired permutation p <= 0.05",
+      "bootstrap CI lower bound > 0",
+      "INVALID_RUN if invalid rate > 0.05 or paired observations < 65"
+    ]
+  },
+  "analysis_parameters": {
+    "seed": 20261020,
+    "n_resamples": 10000,
+    "alpha": 0.05,
+    "note": "seed and resample count were not fixed by the preregistration"
+  }
+}

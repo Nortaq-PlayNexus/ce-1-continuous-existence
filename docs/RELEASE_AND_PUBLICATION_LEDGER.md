@@ -56,6 +56,8 @@ The Zenodo account contains 13 additional published records (ScientificDiscovery
 
 | Item | Status |
 |---|---|
-| CE-1 v0.2.0 (with H8 benchmark) | Not yet prepared. No deposition created. |
-| Model qualification suite | Not yet built. No deposition planned. |
-| continuity_v1 benchmark | Not yet built. No deposition planned. |
+| CE-1 v0.2.0 (H8 benchmark + 2026-10-21 re-verification) | Not yet prepared. No deposition created. Carries the analysis code, the corrected instrument, the adversarial report and the live runner. |
+| Model qualification suite | Built and run (gemma3:4b, qwen3:4b, dolphin-llama3:latest). No separate deposition planned. |
+| continuity_v1 benchmark | Built (72 scenarios, frozen, committed). Published inside the H8 deposit 23489491. |
+| Adversarial verification of H8 (2026-10-21) | Complete. `reports/adversarial_verification_h8.md`. No deposit yet. |
+

@@ -1,0 +1,39 @@
+{
+  "verdict": "NOT_QUALIFIED",
+  "reasons": [
+    "pass rate 0.792 below threshold 0.875"
+  ],
+  "metrics": {
+    "total_trials": 24,
+    "valid_pass": 19,
+    "valid_fail": 5,
+    "invalid_trials": 0,
+    "truncation_count": 0,
+    "json_fail_count": 0,
+    "truncation_rate": 0.0,
+    "valid_json_rate": 1.0,
+    "pass_rate": 0.7916666666666666
+  },
+  "threshold_checks": {
+    "truncation_rate": {
+      "passed": true,
+      "actual": 0.0,
+      "required": 0.0
+    },
+    "valid_json_rate": {
+      "passed": true,
+      "actual": 1.0,
+      "required": 0.9583333333333334
+    },
+    "evidence_extraction_rate": {
+      "passed": false,
+      "actual": 0.7916666666666666,
+      "required": 0.875
+    },
+    "parseable_rate": {
+      "passed": true,
+      "actual": 1.0,
+      "required": 0.9583333333333334
+    }
+  }
+}

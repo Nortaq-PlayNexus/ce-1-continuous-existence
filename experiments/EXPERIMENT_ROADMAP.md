@@ -1,27 +1,33 @@
 # Experiment Roadmap — CE-1 Continuous Existence Research Programme
 
-## Stage 0: Research baseline (current)
+## Stage 0: Research baseline (closed 2026-10-19)
 
 Deliverables required by the directive:
 1. Verified isolated repository — DONE (git init, baseline commit)
 2. Project README and research charter — DONE
 3. Multi-stage research map — DONE (research/RESEARCH_MAP.md)
-4. Populated literature register — PARTIAL (research map has structure; sources not yet populated)
+4. Populated literature register — PARTIAL (4 verified sources: butlin2023cai, cogitate2025, albantakis2023iit40, packer2023memgpt)
 5. Comparison of major theories of consciousness — DONE (in RESEARCH_MAP.md §1)
 6. Inventory of relevant existing implementations — DONE (in RESEARCH_MAP.md §2)
-7. Hypothesis register with operational definitions — DONE (hypotheses/HYPOTHESIS_REGISTER.md)
+7. Hypothesis register with operational definitions — DONE (hypotheses/HYPOTHESIS_REGISTER.md, H1–H8; restored 2026-10-21 after dd5f188 deleted H1–H7)
 8. Catalogue of contradictory evidence and unresolved questions — DONE (in RESEARCH_MAP.md §4)
 9. Proposed experimental roadmap with controls and falsification criteria — THIS FILE
-10. Documented source and experiment provenance system — PARTIAL (RESEARCH_PRINCIPLES.md exists)
-11. Working validation scripts and automated tests — NOT STARTED
-12. Coverage report — NOT STARTED
-13. Initial scientific report with citations — NOT STARTED
+10. Documented source and experiment provenance system — DONE (RESEARCH_PRINCIPLES.md, sources/SOURCE_MANIFEST.jsonl, scripts/validate_sources.py)
+11. Working validation scripts and automated tests — DONE (scripts/verify.ps1, 180 pytest cases)
+12. Coverage report — THIS FILE §5
+13. Initial scientific report with citations — DONE (reports/INITIAL_RESEARCH_REPORT.md)
 14. Prioritized next-action plan — THIS FILE §4
-15. Clean final status report — NOT STARTED
+15. Clean final status report — DONE (docs/STAGE_0_STATUS.md)
 
 ## Stage 1: Computational continuity experiments
 
-### Experiment 1.1: Episodic memory ablation (H1 test)
+### Experiment 1.1: Episodic memory ablation (H1 test) — INCONCLUSIVE
+
+**Result:** the recorded run was retracted by independent audit (the design
+added text to the prompt instead of removing state, so it could not separate
+memory from prompt content). The corrected rerun returned INVALID_RUN: all 30
+trials truncated at num_predict=2000. The instrument is fixed and tested; the
+experiment has not produced an admissible result.
 
 **Hypothesis tested:** H1 (structured internal state causally influences future cognition)
 
@@ -192,21 +198,30 @@ gap between them is the gap between data and consciousness.
 
 | Area | Status | Notes |
 |---|---|---|
-| Literature review | PARTIAL | RESEARCH_MAP.md has structure; sources not populated |
+| Literature review | PARTIAL | RESEARCH_MAP.md has structure; 4 verified sources only |
 | Theory comparison | DONE | 5 theories mapped in RESEARCH_MAP.md §1 |
 | Implementation inventory | DONE | 5 systems inventoried in RESEARCH_MAP.md §2 |
-| Hypothesis register | DONE | H1-H7 with operational definitions |
+| Hypothesis register | DONE | H1-H8 with operational definitions (H1-H7 restored 2026-10-21) |
 | Contradictory evidence | DONE | Listed in RESEARCH_MAP.md §4 |
 | Experimental roadmap | DONE | This file |
-| Source provenance | NOT STARTED | SOURCE_MANIFEST.jsonl not created |
-| Validation scripts | NOT STARTED | No automated tests |
-| Initial scientific report | NOT STARTED | No report with citations |
-| Coverage report | IN PROGRESS | This section |
+| Source provenance | DONE | SOURCE_MANIFEST.jsonl, validated by scripts/validate_sources.py |
+| Validation scripts | DONE | scripts/verify.ps1 (5 checks), 180 pytest cases, 13/13 mutations caught |
+| Initial scientific report | DONE | reports/INITIAL_RESEARCH_REPORT.md |
+| Coverage report | DONE | This section |
 | Next-action plan | DONE | This file §4 |
+| Model qualification | DONE | 24-item suite; gemma3:4b QUALIFIED 23/24 |
+| continuity_v1 benchmark | DONE | 72 scenarios, frozen, committed; design-audited |
+| H8 confirmatory experiment | DONE | 216 trials, SUPPORTED, adversarially re-verified 2026-10-21 |
+| H8 re-verification | DONE | reports/adversarial_verification_h8.md; preregistered analysis implemented and run |
+| H8 second-model replication | IN PROGRESS | 2026-10-21 |
+| H3 interruption/resumption | NOT STARTED | No experiment run |
+| H4 recurrence ablation | NOT STARTED | No experiment run |
+| H5 self-model accuracy | NOT STARTED | No experiment run |
+| H6 indicator assessment | NOT STARTED | No experiment run |
 
 **What remains inaccessible:** Full text of many papers (no paywall access).
 Conference proceedings behind paywalls. Code repositories that require
 authentication. Live experiments that require compute resources.
 
 **What was searched:** Web search for episodic memory, consciousness, AI identity,
-Mem0, Letta, Zep, Equilibrium, Tulving, Butlin et al., "Identity as Trajectory."
+Mem0, Letta, Zep, Equilibrium, Tulving, Butlin et al.

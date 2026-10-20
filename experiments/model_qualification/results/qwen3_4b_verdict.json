@@ -1,0 +1,43 @@
+{
+  "verdict": "INVALID_RUN",
+  "reasons": [
+    "truncation rate 0.500 exceeds threshold 0.000",
+    "valid JSON rate 0.000 below threshold 0.958",
+    "pass rate 0.000 below threshold 0.875",
+    "parseable rate 0.000 below threshold 0.958",
+    "too many invalid trials: 24/24"
+  ],
+  "metrics": {
+    "total_trials": 24,
+    "valid_pass": 0,
+    "valid_fail": 0,
+    "invalid_trials": 24,
+    "truncation_count": 12,
+    "json_fail_count": 2,
+    "truncation_rate": 0.5,
+    "valid_json_rate": 0.0,
+    "pass_rate": 0.0
+  },
+  "threshold_checks": {
+    "truncation_rate": {
+      "passed": false,
+      "actual": 0.5,
+      "required": 0.0
+    },
+    "valid_json_rate": {
+      "passed": false,
+      "actual": 0.0,
+      "required": 0.9583333333333334
+    },
+    "evidence_extraction_rate": {
+      "passed": false,
+      "actual": 0.0,
+      "required": 0.875
+    },
+    "parseable_rate": {
+      "passed": false,
+      "actual": 0.0,
+      "required": 0.9583333333333334
+    }
+  }
+}

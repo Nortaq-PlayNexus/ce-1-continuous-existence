@@ -126,7 +126,6 @@ subjective experience?*
 | Letta | Agent-managed tiered memory | Causal integration with reasoning |
 | Equilibrium | File-based memory + handoff | Runtime persistence + self-authoring |
 | Episodic memory (this project) | Structured episodes + semantic search | Causal integration, metacognition, global broadcast |
-| "Identity as Trajectory" paper | Longitudinal persona stability | Subjective continuity, not just behavioral |
 
 ## 4. Key open questions
 

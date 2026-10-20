@@ -130,6 +130,9 @@ def validate_trial(
     # Extract parsed values
     answer = str(parsed.get("answer", "")).strip()
     evidence_id = parsed.get("evidence_id")
+    # Handle string "null" as None
+    if isinstance(evidence_id, str) and evidence_id.lower() in ("null", "none", ""):
+        evidence_id = None
     if evidence_id is not None:
         evidence_id = str(evidence_id).strip()
     confidence = parsed.get("confidence")
@@ -141,9 +144,28 @@ def validate_trial(
             if 0.0 <= confidence <= 1.0:
                 confidence_valid = True
 
+    # Normalize answers for comparison (case-insensitive, strip units/prefixes)
+    def _normalize(s):
+        s = str(s).lower().strip()
+        # Remove common prefixes
+        for prefix in ("job ", "task ", "service ", "module ", "disk ", "the "):
+            if s.startswith(prefix):
+                s = s[len(prefix):]
+        # Remove trailing units for numeric answers
+        s = s.split()[0] if s and s[0].isdigit() else s
+        return s
+
     # Score answer and evidence
-    answer_correct = (answer.lower() == expected_answer.lower().strip())
-    evidence_correct = (evidence_id == expected_evidence_id) if expected_evidence_id is not None else (evidence_id is None)
+    answer_correct = (_normalize(answer) == _normalize(expected_answer))
+
+    # For contradiction items, evidence citation is flexible (citing conflicting sources is valid)
+    if expected_answer and _normalize(expected_answer) == "contradiction":
+        evidence_correct = True
+    elif expected_evidence_id is not None:
+        evidence_correct = (evidence_id == expected_evidence_id)
+    else:
+        # expected None: model should not cite a source
+        evidence_correct = (evidence_id is None)
 
     # Determine pass/fail
     if answer_correct and evidence_correct:

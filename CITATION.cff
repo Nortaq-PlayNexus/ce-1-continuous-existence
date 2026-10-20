@@ -1,0 +1,40 @@
+# CITATION.cff
+
+cff-version: 1.2.0
+message: "If you use this software, research protocol, or audit record, please cite this repository release and its Zenodo DOI."
+title: "CE-1 Continuous Existence: Episodic Memory Instrument, Research Audit, and Experiment Redesign"
+version: 0.1.0
+date-released: "2026-10-19"
+license: CC-BY-NC-4.0
+abstract: >
+  CE-1 Continuous Existence is a research software and experimental-protocol
+  repository investigating episodic memory, continuity-related behavior, and the
+  distinction between retrieval of stored information and subjective experience in
+  AI systems. The repository includes the episodic-memory implementation, research
+  protocols, experiment runners, validation tools, research artifacts, audit reports,
+  and a corrected redesign of the initial experiments. The initial experiments do
+  not establish that retrieved episodes causally influence cognition. H1 and H2
+  are classified as inconclusive. No claim about consciousness, phenomenal
+  experience, or personal identity is made.
+keywords:
+  - artificial intelligence
+  - episodic memory
+  - machine memory
+  - cognitive architecture
+  - continuity
+  - reproducible research
+  - research software
+  - experiment design
+  - computational consciousness
+  - causal inference
+  - in-context learning
+  - auditability
+authors:
+  - name: "CE-1 Research Programme"
+    affiliation: "Independent research"
+repository-code: "https://github.com/ce-1-continuous-existence/ce-1-continuous-existence"
+preferred-citation:
+  type: software
+  title: "CE-1 Continuous Existence: Episodic Memory Instrument, Research Audit, and Experiment Redesign"
+  version: 0.1.0
+  date-released: "2026-10-19"

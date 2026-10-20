@@ -1,4 +1,4 @@
-# verify.ps1 — run every CE-1 check in one command.
+# verify.ps1 - run every CE-1 check in one command.
 #
 #   powershell -NoProfile -File scripts\verify.ps1
 #
@@ -45,6 +45,7 @@ Invoke-Check "research artifacts"     $py @("scripts\validate_research_artifacts
 Invoke-Check "unit tests"             $py @("-m", "pytest", "tests", "-q")
 Invoke-Check "mutation harness"       $py @("scripts\mutation_check.py")
 Invoke-Check "experiment manifest"    $py @("scripts\make_research_manifest.py")
+Invoke-Check "H8 adversarial audit"   $py @("experiments\continuity_v1\adversarial_verify_h8.py")
 
 Write-Host ""
 Write-Host ("=" * 60)

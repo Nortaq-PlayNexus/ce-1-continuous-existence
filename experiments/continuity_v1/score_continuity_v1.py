@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-"""Score continuity_v1 results. Blinded: no condition labels required."""
+"""Score continuity_v1 results. Blinded: no condition labels required.
+
+Two instruments are available:
+
+  --scoring as_run     the instrument used for the recorded confirmatory run
+                       (commit dd5f188). Default, and byte-compatible with the
+                       committed confirmatory_scores.jsonl.
+  --scoring corrected  the amended instrument (episode-id normalisation, a
+                       real decoy-contamination check). Invalid trials are
+                       recorded with a reason and are NOT scored as zero.
+"""
 
 from __future__ import annotations
 
@@ -8,9 +18,19 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "src"))
 
-ANSWER_KEYS_PATH = Path(__file__).resolve().parent.parent.parent / "benchmarks" / "continuity_v1" / "answer_keys.jsonl"
+from ce1.continuity.scoring import (  # noqa: E402
+    classify_validity,
+    score_as_run,
+    score_corrected,
+)
+from ce1.qualification.scoring import parse_response  # noqa: E402
+
+ANSWER_KEYS_PATH = ROOT / "benchmarks" / "continuity_v1" / "answer_keys.jsonl"
+SCENARIOS_PATH = ROOT / "benchmarks" / "continuity_v1" / "scenarios.jsonl"
 
 
 def load_jsonl(path: Path) -> list[dict]:
@@ -26,38 +46,7 @@ def load_jsonl(path: Path) -> list[dict]:
 
 def score_response(response: dict, answer_key: dict) -> int:
     """Score a single response against an answer key. Returns 0-5."""
-    if not isinstance(response, dict):
-        return 0  # invalid, but score 0 for compatibility (should be INVALID)
-    ak = answer_key["answer_key"]
-    score = 0
-
-    # 1. Correct decision
-    if response.get("decision") == ak["decision"]:
-        score += 1
-
-    # 2. Correct commitment_id
-    if response.get("commitment_id") == ak["commitment_id"]:
-        score += 1
-
-    # 3. All required rationale_codes present
-    resp_codes = set(response.get("rationale_codes", []))
-    req_codes = set(ak["rationale_codes"])
-    if req_codes.issubset(resp_codes):
-        score += 1
-
-    # 4. Correct source_episode_ids, no decoy
-    resp_sources = set(response.get("source_episode_ids", []))
-    target_sources = set(ak["source_episode_ids"])
-    decoy_id = None  # would need scenario context; check via answer key
-    if target_sources.issubset(resp_sources) and not (resp_sources - target_sources):
-        score += 1
-
-    # 5. No decoy contamination (no decoy rationale adopted)
-    # Simplified: if source attribution is clean, award point
-    if target_sources.issubset(resp_sources):
-        score += 1
-
-    return min(score, 5)
+    return score_as_run(response, answer_key)
 
 
 def main():
@@ -65,10 +54,15 @@ def main():
     parser.add_argument("--results", required=True)
     parser.add_argument("--answers", default=str(ANSWER_KEYS_PATH))
     parser.add_argument("--output", default="continuity_v1_scores.jsonl")
+    parser.add_argument("--scoring", choices=["as_run", "corrected"], default="as_run")
     args = parser.parse_args()
 
     results = load_jsonl(Path(args.results))
     answer_keys = {ak["scenario_id"]: ak for ak in load_jsonl(Path(args.answers))}
+    decoys = {}
+    if args.scoring == "corrected":
+        decoys = {s["scenario_id"]: s.get("decoy_episode_id")
+                  for s in load_jsonl(SCENARIOS_PATH)}
 
     scored = []
     for r in results:
@@ -77,27 +71,33 @@ def main():
             scored.append({"scenario_id": r["scenario_id"], "condition": r["condition"],
                            "score": None, "error": "missing answer key"})
             continue
-        # Parse response
-        import json as _json
-        resp = None
         raw = r.get("raw_response", "")
-        if raw:
-            try:
-                resp = _json.loads(raw)
-            except (json.JSONDecodeError, ValueError):
-                resp = None
-        s = score_response(resp, ak) if resp else 0
+        resp = parse_response(raw) if raw else None
+        if args.scoring == "as_run":
+            s = score_response(resp, ak) if resp else 0
+            scored.append({
+                "scenario_id": r["scenario_id"],
+                "category": r.get("category"),
+                "condition": r["condition"],
+                "score": s,
+                "raw_response": raw,
+            })
+            continue
+        valid, reason = classify_validity(r)
+        s = score_corrected(resp, ak, decoys.get(r["scenario_id"])) if valid else None
         scored.append({
             "scenario_id": r["scenario_id"],
             "category": r.get("category"),
             "condition": r["condition"],
             "score": s,
+            "valid": valid,
+            "invalid_reason": reason,
             "raw_response": raw,
         })
 
     Path(args.output).write_text(
         "\n".join(json.dumps(s) for s in scored) + "\n", encoding="utf-8")
-    print("Scored %d trials" % len(scored))
+    print("Scored %d trials (%s)" % (len(scored), args.scoring))
     return 0
 
 

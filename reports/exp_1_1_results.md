@@ -1,5 +1,7 @@
 # Experiment 1.1 Results: Episodic Memory Ablation (H1 Test)
 
+> **RETRACTED by independent audit (2026-10-18).** This experiment result is void. The recorded run has different scores than what the code produces. The design cannot separate memory from prompt-content effects. H1 status is INCONCLUSIVE, not supported. See research/RESEARCH_AUDIT.md.
+
 ## Date: 2026-10-17
 
 ## Hypothesis
@@ -25,7 +27,7 @@ behavior in measurable ways.
 | B (with memory) | 3/5 | 3/5 | 3/5 | 3.00 | 0.00 |
 
 **Mean difference: 2.00 (B > A)**
-**H1 supported: True** (difference >= 1.0)
+**H1 supported: INCONCLUSIVE** (instrument defect: all outputs truncated, keyword copying confound, effect does not reproduce)
 
 ### Check-level breakdown
 
