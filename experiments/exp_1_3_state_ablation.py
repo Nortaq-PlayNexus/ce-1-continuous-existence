@@ -1,5 +1,10 @@
 ﻿"""Experiment 1.3 â€” State ablation vs. prompt ablation (the H1 test).
 
+EXPLORATORY ONLY; NOT A PREREGISTERED CONFIRMATORY TEST.
+Experiment 1.3 is a historical state-ablation probe. It lacks the
+validity protections of a preregistered experiment. Results must not
+be cited as confirmatory evidence.
+
 WHY THIS EXPERIMENT IS DIFFERENT FROM 1.1 AND 1.2
 =================================================
 Experiments 1.1 and 1.2 both *added text* to the prompt and scored whether the
@@ -54,13 +59,38 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import math
 import random
 import statistics
+import sys
 import time
 import urllib.error
 import urllib.request
 from pathlib import Path
+
+# Shared validity module
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src.ce1.validation.output_validity import (
+    is_valid_trial as _shared_is_valid_trial,
+    check_api_error,
+    check_nan_inf,
+    check_missing_metadata,
+    check_truncation,
+    check_empty_response,
+)
+
+# Tolerance for float comparisons (addresses the 0.3 vs 0.30000000000000004 defect)
+FLOAT_TOLERANCE = 1e-9
+
+# Permanent warning: this experiment is exploratory, not confirmatory.
+EXPLORATORY_WARNING = (
+    "EXPLORATORY ONLY; NOT A PREREGISTERED CONFIRMATORY TEST. "
+    "Experiment 1.3 is a historical state-ablation probe. It lacks the "
+    "validity protections of a preregistered experiment. Results must not "
+    "be cited as confirmatory evidence."
+)
 
 OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
 JUDGE_MODEL = "qwen3:4b"
@@ -133,6 +163,53 @@ Output format -- follow exactly, no other text:
 3 = applies it correctly"""
 
 
+def is_valid_trial(response: dict) -> tuple[bool, str]:
+    """Validate a single model response for Experiment 1.3.
+
+    Uses the shared validity module plus Experiment 1.3-specific checks.
+    Returns (valid, reason).
+
+    Checks (in order):
+    1. Response is a dict
+    2. Response text is present and non-empty
+    3. done_reason is present and is "stop" (not "length", not None)
+    4. No API error payload
+    5. No NaN/Inf in numeric fields
+    6. Required metadata present (done_reason, response)
+    """
+    # Use shared validity module as base
+    shared = _shared_is_valid_trial(response, required_fields=["done_reason", "response"])
+    if not shared.valid:
+        return False, shared.reason
+
+    # Additional: API error check
+    if check_api_error(response):
+        return False, "api_error"
+
+    # Additional: NaN/Inf check on eval_count
+    eval_count = response.get("eval_count")
+    if eval_count is not None and check_nan_inf([eval_count]):
+        return False, "nan_or_inf_value"
+
+    # Additional: done_reason must be exactly "stop"
+    done_reason = response.get("done_reason")
+    if done_reason != "stop":
+        if done_reason == "length":
+            return False, "truncated (done_reason=length)"
+        return False, "unexpected_done_reason=%s" % done_reason
+
+    return True, "ok"
+
+
+def floats_close(a: float, b: float, tol: float = FLOAT_TOLERANCE) -> bool:
+    """Tolerance-safe float comparison.
+
+    Addresses the 0.3 vs 0.30000000000000004 defect from H2.
+    Returns True if |a - b| <= tol.
+    """
+    return abs(a - b) <= tol
+
+
 def judge_score(answer: str, seed: int) -> int | None:
     """RETIRED 2026-10-18 -- always returns None. Kept as a documented stub so
     the results schema stays stable and the reason is not forgotten.
@@ -190,7 +267,21 @@ def generate(prompt: str, model: str = AGENT_MODEL, seed: int | None = None,
         "done_reason": res.get("done_reason"),
         "eval_count": res.get("eval_count"),
         "truncated": res.get("done_reason") == "length",
+        "model": model,
+        "temperature": temperature,
+        "num_predict": num_predict,
+        "seed": seed,
+        "prompt_hash": hashlib.sha256(prompt.encode("utf-8")).hexdigest()[:16],
+        "timestamp_started": time.time(),
+        "timestamp_finished": time.time(),
     }
+    # Validate the trial
+    trial_data = {"response": text, "done_reason": meta["done_reason"],
+                  "eval_count": meta["eval_count"]}
+    valid, reason = is_valid_trial(trial_data)
+    meta["valid"] = valid
+    meta["invalidity_reason"] = reason if not valid else None
+    meta["trial_status"] = "VALID" if valid else "INVALID_TRIAL"
     return text, meta
 
 
@@ -303,11 +394,18 @@ def run(reps: int, dry_run: bool) -> dict:
             "Probe keywords are absent from the episode, so keyword copying "
             "cannot earn a point."
         ),
-        "agent_model": AGENT_MODEL,
+        "protocol_version": "1.3",
+        "experiment_version": "1.3",
+        "model": AGENT_MODEL,
         "judge_model": JUDGE_MODEL,
         "ollama_url": OLLAMA_URL,
-        "reps": reps,
+        "temperature": 0.7,
+        "num_predict": 1200,
+        "tolerance": FLOAT_TOLERANCE,
+        "reps_requested": reps,
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "seeds": seeds,
+        "exploratory_warning": EXPLORATORY_WARNING,
         "conditions": {},
     }
 
@@ -326,6 +424,11 @@ def run(reps: int, dry_run: bool) -> dict:
                 "probe": probe,
                 "judge": judge,
                 "meta": meta,
+                "valid": meta.get("valid", False),
+                "invalidity_reason": meta.get("invalidity_reason"),
+                "trial_status": meta.get("trial_status", "INVALID_TRIAL"),
+                "done_reason": meta.get("done_reason"),
+                "truncated": meta.get("truncated", False),
                 "answer_chars": len(answer),
                 "seconds": round(time.time() - t0, 2),
             })
@@ -336,19 +439,68 @@ def run(reps: int, dry_run: bool) -> dict:
     # ---- analysis ----------------------------------------------------------
     summary = {}
     for name, block in results["conditions"].items():
-        probes = [r["probe"]["total"] for r in block["rows"] if r.get("probe")]
-        judges = [r["judge"] for r in block["rows"] if r.get("judge") is not None]
+        trials = block["rows"]
+        valid_trials = [t for t in trials if t.get("valid", False)]
+        invalid_trials = [t for t in trials if not t.get("valid", False)]
+        probes = [r["probe"]["total"] for r in valid_trials if r.get("probe")]
+        judges = [r["judge"] for r in valid_trials if r.get("judge") is not None]
+        truncated_count = sum(1 for r in trials if r.get("truncated", False))
         summary[name] = {
-            "n": len(probes),
+            "n": len(trials),
+            "valid_count": len(valid_trials),
+            "invalid_count": len(invalid_trials),
             "probe_mean": round(statistics.mean(probes), 3) if probes else None,
             "probe_ci95": [round(x, 3) for x in bootstrap_ci(probes)] if probes else None,
             "judge_mean": round(statistics.mean(judges), 3) if judges else None,
-            "truncated_runs": sum(1 for r in block["rows"] if (r.get("meta") or {}).get("truncated")),
+            "truncated_runs": truncated_count,
+            "validity_status": "VALID" if len(valid_trials) > 0 else "INVALID_TRIAL",
         }
     results["summary"] = summary
 
-    a = [r["probe"]["total"] for r in results["conditions"]["A_store_empty"]["rows"] if r.get("probe")]
-    b = [r["probe"]["total"] for r in results["conditions"]["B_retrieved"]["rows"] if r.get("probe")]
+    # Verdict logic
+    min_valid = 2  # at least 2 valid trials per condition
+    all_valid = all(
+        results["summary"][c]["valid_count"] >= min_valid
+        for c in results["conditions"]
+    )
+    any_truncated = any(
+        results["summary"][c]["truncated_runs"] > 0
+        for c in results["conditions"]
+    )
+
+    if any_truncated:
+        verdict = "INVALID_RUN"
+    elif not all_valid:
+        verdict = "INVALID_RUN"
+    else:
+        # Check if there's a significant difference
+        a = [r["probe"]["total"] for r in results["conditions"]["A_store_empty"]["rows"]
+             if r.get("valid") and r.get("probe")]
+        b = [r["probe"]["total"] for r in results["conditions"]["B_retrieved"]["rows"]
+             if r.get("valid") and r.get("probe")]
+        if a and b:
+            u, p = mann_whitney_u(a, b)
+            if p < 0.05:
+                if statistics.mean(b) > statistics.mean(a):
+                    verdict = "SUPPORTED"
+                else:
+                    verdict = "FALSIFIED"
+            else:
+                verdict = "INCONCLUSIVE"
+        else:
+            verdict = "INCONCLUSIVE"
+
+    results["comparison"] = {
+        "verdict": verdict,
+        "min_valid_per_condition": min_valid,
+        "all_conditions_valid": all_valid,
+        "any_truncated": any_truncated,
+    }
+
+    a = [r["probe"]["total"] for r in results["conditions"]["A_store_empty"]["rows"]
+         if r.get("valid") and r.get("probe")]
+    b = [r["probe"]["total"] for r in results["conditions"]["B_retrieved"]["rows"]
+         if r.get("valid") and r.get("probe")]
     if a and b:
         u, p = mann_whitney_u(a, b)
         results["test_store_empty_vs_retrieved"] = {
