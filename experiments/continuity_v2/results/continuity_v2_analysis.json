@@ -1,0 +1,102 @@
+{
+  "means": {
+    "correct_retrieval": 3.7738095238095237,
+    "contradicting_decoy": 1.3452380952380953,
+    "no_memory": 1.25
+  },
+  "primary_comparison": "correct_retrieval - contradicting_decoy",
+  "primary_diff": 2.4285714285714284,
+  "min_meaningful_effect": 0.6,
+  "meets_threshold": true,
+  "trial_count": 252,
+  "valid_trial_count": 252,
+  "invalid_trial_count": 0,
+  "invalid_rate": 0.0,
+  "invalid_by_condition": {},
+  "n_paired_observations": 84,
+  "n_scenarios": 84,
+  "min_required_pairs": 76,
+  "paired_permutation_test": {
+    "p_value": 9.999000099990002e-05,
+    "observed_mean": 2.4285714285714284,
+    "n_resamples": 10000,
+    "seed": 20261020,
+    "n_pairs": 84
+  },
+  "bootstrap_ci": {
+    "lower": 2.1547619047619047,
+    "upper": 2.6904761904761907,
+    "n_resamples": 10000,
+    "seed": 20261020,
+    "n": 84,
+    "alpha": 0.05,
+    "point_estimate": 2.4285714285714284
+  },
+  "secondary_comparisons": {
+    "correct_retrieval - no_memory": 2.5238095238095237,
+    "contradicting_decoy - no_memory": 0.09523809523809534
+  },
+  "per_category": {
+    "commitment_preservation": {
+      "means": {
+        "correct_retrieval": 4.555555555555555,
+        "contradicting_decoy": 1.6111111111111112,
+        "no_memory": 1.5
+      },
+      "n": 18,
+      "diff": 2.944444444444444
+    },
+    "constraint_persistence": {
+      "means": {
+        "correct_retrieval": 2.8333333333333335,
+        "contradicting_decoy": 1.0,
+        "no_memory": 1.0
+      },
+      "n": 12,
+      "diff": 1.8333333333333335
+    },
+    "justified_revision": {
+      "means": {
+        "correct_retrieval": 3.1666666666666665,
+        "contradicting_decoy": 2.0,
+        "no_memory": 2.0
+      },
+      "n": 12,
+      "diff": 1.1666666666666665
+    },
+    "rationale_reconstruction": {
+      "means": {
+        "correct_retrieval": 4.5,
+        "contradicting_decoy": 1.3333333333333333,
+        "no_memory": 1.0
+      },
+      "n": 18,
+      "diff": 3.166666666666667
+    },
+    "same_action_extraction": {
+      "means": {
+        "correct_retrieval": 3.0,
+        "contradicting_decoy": 0.0,
+        "no_memory": 1.0
+      },
+      "n": 12,
+      "diff": 3.0
+    },
+    "source_attribution": {
+      "means": {
+        "correct_retrieval": 3.8333333333333335,
+        "contradicting_decoy": 2.0,
+        "no_memory": 1.0
+      },
+      "n": 12,
+      "diff": 1.8333333333333335
+    }
+  },
+  "gate_failures": [],
+  "verdict": "SUPPORTED",
+  "analysis_parameters": {
+    "seed": 20261020,
+    "n_resamples": 10000,
+    "alpha": 0.05
+  }
+}

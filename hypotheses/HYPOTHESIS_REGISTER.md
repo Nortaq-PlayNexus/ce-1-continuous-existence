@@ -279,6 +279,53 @@ confirmatory_scores.jsonl, confirmatory_analysis.json,
 adversarial_verification_h8.json, reports/adversarial_verification_h8.md,
 reports/h8_replication_dolphin_llama3.md
 
+## H8-v2: Content-use criterion (continuity_v2 benchmark)
+
+**Status:** SUPPORTED (confirmatory, 2026-10-28)
+
+**Operational definition:** After a context reset, correctly retrieved prior
+episodes improve objective trajectory-continuity performance relative to
+token-matched contradicting decoy episodes and a genuinely empty no-memory
+baseline, and the improvement is attributable to the *content* of the
+retrieved episode, not to its presence or to prompt length.
+
+**Falsification:** If the content-use criterion does not fire (0/252), or the
+correct and contradicting-decoy arms do not differ, H8 is falsified.
+
+**Result:** SUPPORTED. Primary comparison (correct − contradicting_decoy) =
+2.429 on the 0-6 scale, exceeding the minimum meaningful effect of 0.60.
+252 trials, 0 truncations, 0 invalid. All 6 categories show positive
+correct−decoy differences. Permutation p < 1.0e-4, bootstrap 95% CI
+[2.155, 2.690].
+
+**Key advance over H8-v1:** the controlled vocabulary in the prompt made the
+`decision` and `rationale_codes` criteria reachable (41% and 33% firing rates,
+vs 0% in v1). The content-use criterion fires 72% of the time — the
+retrieved content is being used in the answer. The v2 benchmark successfully
+measures what v1 could not.
+
+**What this does NOT establish:**
+- Consciousness or subjective experience
+- Genuine reliving or autonoetic awareness
+- Metaphysical continuous existence
+- Moral patienthood
+- Decision quality in any real-world sense
+- Generalization beyond gemma3:4b
+- Interruption or resumption (H3 remains untested)
+
+**Limitations:**
+- Single model (gemma3:4b) tested
+- no-memory arm does not measure abstention (14% abstention rate)
+- commitment_id criterion still low (8%)
+- 84 scenarios is a modest sample
+
+**Evidence:** continuity_v2_results.jsonl, continuity_v2_scores.jsonl,
+continuity_v2_analysis.json, reports/continuity_v2_results.md
+
+**Model:** gemma3:4b (qualified 23/24, 95.8%)
+
+**Preregistration:** experiments/continuity_v2/preregistration_h8_v2.md
+
 **Models:** gemma3:4b (qualified 23/24, 95.8%); dolphin-llama3:latest
 (qualified 21/24)
 

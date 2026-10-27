@@ -75,32 +75,48 @@ to be fixed. Full detail: `reports/adversarial_verification_h8.md`.
 
 ## Current next target
 
-**A v2 benchmark, then the untested hypotheses (H3 interruption/resumption,
-H4 recurrence, H5 self-model) with preregistered instruments.**
+**H3 interruption/resumption experiment -- the only untested hypothesis that
+speaks to the programme's title question.**
 
-The 0.5-scale H8 benchmark is exhausted as an instrument: two different model
-families both fail the `decision` and `rationale_codes` criteria in all 432
-trials, because the prompt never states the controlled vocabulary. A v2 must
-put the allowed decisions and the rationale codes in the prompt, add a
-content-use criterion that checks the answer contains the retrieved value
-(e.g. "512" and not "256"), make the no-memory arm genuinely empty with an
-abstention option, rename the decoy arm to say that it contradicts the key,
-and fix the seed and resample count in the preregistration.
+H8-v2 is SUPPORTED (2026-10-28): primary diff 2.429 on the 0-6 scale,
+p < 1e-4, CI [2.155, 2.690], content-use criterion fires 72%. The v2
+benchmark now measures what v1 could not: whether the retrieved content
+informed the decision. The controlled vocabulary made the decision and
+rationale_codes criteria reachable (41% and 33%, vs 0% in v1).
 
-The specification is in `reports/h8_control_integrity_audit.md` §4.
+H3 (resumption after interruption without full reconstruction) has never
+been tested. It requires a persistence harness (actual store + interruption
+mechanism + reconstruction comparison). This is the next build.
 
-## Historical results
+## What has been demonstrated
 
-All historical experiment results remain preserved as evidence. They are
-explicitly labeled as inconclusive or exploratory. No historical result
-has been deleted or overwritten.
+- Episodic memory infrastructure stores and retrieves structured records.
+- Correctly retrieved episodic content changes what a model says, in the
+  direction of the retrieved episode: 71/72 scenarios produce a different
+  answer under the correct and decoy conditions (gemma3:4b), and a
+  rubric-independent content-fidelity measure shows discrimination of +0.152
+  (correct) against -0.215 (decoy) with no memory at -0.017.
+- The effect is present in two model families from different lineages, and is
+  larger in the second (dolphin-llama3:latest: 1.875, CI [1.722, 2.028]).
+- H8-v2: the content-use criterion fires (72%). The v2 benchmark
+  successfully measures what v1 could not: whether the retrieved content
+  informed the decision. Primary diff 2.429, p < 1e-4, CI [2.155, 2.690].
+- Ablation experiments were run but instrument defects invalidated their
+  conclusions.
+- The corrected rerun of Experiment 1.1 was INVALID_RUN (all trials truncated).
+- Experiment 1.3 produced a null/exploratory result (not significant).
 
-## Publication status
+## What has NOT been demonstrated
 
-- CE-1 Zenodo deposition: 23471293 (published, DOI: 10.5281/zenodo.23471293, CC BY-NC 4.0)
-- H8 benchmark Zenodo deposition: 23489491 (published, DOI: 10.5281/zenodo.23489491)
-- S2-F-23 Zenodo deposition: 23489026 (published, DOI: 10.5281/zenodo.23489026, CC BY 4.0)
-- These are distinct records with distinct archives, metadata, and identifiers.
-- Not published: the 2026-10-21 re-verification (analysis code, corrected
-  instrument, adversarial report, live runner). A v0.2.0 deposit would carry
-  them.
+- That episodic memory improves functional continuity in the sense of
+  surviving an interruption or a context loss (H3, untested).
+- That episodic structure provides benefit over semantic structure (H2
+  inconclusive).
+- That the model makes a better decision under correct retrieval: the
+  rubric's decision component was never awarded in any trial, in either model
+  (v1); in v2 it fires 41% but the benchmark is still prompt-delivered
+  retrieval.
+- That the system has subjective experience, consciousness, or genuine
+  reliving.
+- That causal integration between memory and reasoning exists.
+- That the H8 effect generalises beyond two local models and this benchmark.
