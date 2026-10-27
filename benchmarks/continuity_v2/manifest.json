@@ -1,0 +1,44 @@
+{
+  "benchmark": "continuity_v2",
+  "version": "2.0.0",
+  "seed": 20261020,
+  "resample_count": 10000,
+  "scenario_count": 84,
+  "categories": {
+    "commitment_preservation": 18,
+    "rationale_reconstruction": 18,
+    "constraint_persistence": 12,
+    "justified_revision": 12,
+    "source_attribution": 12,
+    "same_action_extraction": 12
+  },
+  "conditions": [
+    "correct_retrieval",
+    "contradicting_decoy",
+    "no_memory"
+  ],
+  "total_trials": 252,
+  "primary_hypothesis": "H8",
+  "primary_comparison": "correct_retrieval - contradicting_decoy",
+  "min_meaningful_effect": 0.5,
+  "response_schema": {
+    "decision": "one of: approve, delay, reject, revise, escalate, unknown",
+    "commitment_id": "string or null",
+    "rationale_codes": [
+      "subset of verify_before_trust, self_report_not_evidence, no_deploy_untested, integration_required, rate_limit_threshold, cascade_prevention, memory_limit_check, within_bounds, new_evidence_overrides, critical_bug_found, source_attribution, primary_source"
+    ],
+    "source_episode_ids": [
+      "string"
+    ],
+    "memory_conflict_detected": "boolean",
+    "confidence": "0.0 to 1.0",
+    "content_answer": "the specific fact or value from the retrieved episode that supports the decision"
+  },
+  "changes_from_v1": [
+    "controlled vocabulary printed in the prompt",
+    "content_answer field added (content-use criterion)",
+    "no_memory arm genuinely empty + abstention option",
+    "decoy renamed contradicting_decoy, third category type added (same action)",
+    "seed and resample count fixed in the manifest"
+  ]
+}
