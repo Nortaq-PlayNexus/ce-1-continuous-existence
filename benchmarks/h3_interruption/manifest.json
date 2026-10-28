@@ -1,0 +1,31 @@
+{
+  "benchmark": "h3_interruption",
+  "version": "1.0.0",
+  "seed": 20261020,
+  "scenario_count": 84,
+  "categories": {
+    "interruption_resumption": 84
+  },
+  "conditions": [
+    "store_populated",
+    "store_empty",
+    "reconstruct"
+  ],
+  "total_trials": 252,
+  "primary_hypothesis": "H3",
+  "primary_comparison": "store_populated - store_empty",
+  "min_meaningful_effect": 0.5,
+  "response_schema": {
+    "decision": "one of: approve, delay, reject, revise, escalate, unknown",
+    "commitment_id": "string or null",
+    "rationale_codes": [
+      "subset of allowed codes"
+    ],
+    "source_episode_ids": [
+      "string"
+    ],
+    "memory_conflict_detected": "boolean",
+    "confidence": "0.0 to 1.0",
+    "content_answer": "the specific fact or value from the retrieved episode"
+  }
+}
