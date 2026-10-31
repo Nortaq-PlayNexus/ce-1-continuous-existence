@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281%2Fzenodo.23790681.svg)](https://doi.org/10.5281/zenodo.23790681)
+
 # CE-1 — Continuous Existence Research Programme
 
 > *"Establish a rigorous, reproducible, independently auditable scientific research programme investigating whether an artificial cognitive system could genuinely experience continuous existence and subjective experience."*
